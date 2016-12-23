@@ -1,15 +1,21 @@
-.PHONY: all lean
-all: lean
+.PHONY: all pubhtml lean
+all: pubhtml lean
 
 # Madoko.
 TARGETS := ch1
 DEPS := style.mdk sendcode.js
+BUILD_DIR := html
 include madoko.mk
+
+# Copy HTML output.
+pubhtml: $(HTML)
+	mkdir -p build
+	cp $(HTML) build/
 
 # Build Lean web interface. Shamelessly ripped off from the mkleanbook
 # include.mk.
 MKLEANBOOK_PATH ?= mkleanbook
-LEANBOOK_BUILD ?= lean
+LEANBOOK_BUILD ?= build/lean
 lean:
 	mkdir -p $(LEANBOOK_BUILD)
 	sed 's|COPYRIGHT_NOTICE|$(COPYRIGHT_NOTICE)|;s|AUTHORS|$(AUTHORS)|;s|TITLE|$(TITLE)|' $(MKLEANBOOK_PATH)/index.html > $(LEANBOOK_BUILD)/index.html
