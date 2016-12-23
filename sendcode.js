@@ -6,12 +6,10 @@ document.addEventListener("DOMContentLoaded", function () {
     example.addEventListener('click', function () {
       let code = example.textContent.trim();
 
-      if (the_window && the_window.opener && !the_window.closed) {
-        the_window.postMessage({"code": code}, window.location.origin);
-      } else {
+      if (!the_window || !the_window.opener || the_window.closed) {
         the_window = window.open(LEAN_URL, '_dingus');
-        console.log(the_window);
       }
+      the_window.postMessage({"code": code}, window.location.origin);
     });
   }
 
