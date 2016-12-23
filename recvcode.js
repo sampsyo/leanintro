@@ -3,9 +3,11 @@
 
 function _gotMessage(event) {
   console.log("got event!");
-  if (event.data.code) {
+  var code = event.data.code;
+  if (code) {
     console.log("executing code!");
-    invoke_leanjs(event.data.code);
+    myModule.editor_main.setValue(code, 1)
+    myModule.process_main_buffer();
   }
 }
 
