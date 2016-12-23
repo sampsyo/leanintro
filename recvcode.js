@@ -1,6 +1,4 @@
-var lean_nav_data = [];
-
-/* This is definitely a hack, but here we insert a handler that lets us load
+/* Silly hack. We insert a handler that lets us load
  * new code into the editor and execute it. */
 
 function _gotMessage(event) {
