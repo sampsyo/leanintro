@@ -14,14 +14,15 @@ pubhtml: $(HTML)
 
 # Build Lean web interface. Shamelessly ripped off from the mkleanbook
 # include.mk.
-MKLEANBOOK_PATH ?= mkleanbook
-LEANBOOK_BUILD ?= build/lean
+MKLEANBOOK_PATH := mkleanbook
+LEANBOOK_BUILD := build/lean
+SCRIPT_HTML := \<script src="js/recvcode.js"\>\</script\>
 lean:
 	mkdir -p $(LEANBOOK_BUILD)
-	sed 's|COPYRIGHT_NOTICE|$(COPYRIGHT_NOTICE)|;s|AUTHORS|$(AUTHORS)|;s|TITLE|$(TITLE)|' $(MKLEANBOOK_PATH)/index.html > $(LEANBOOK_BUILD)/index.html
+	sed 's|\<script\>|$(SCRIPT_HTML)\<script\>|' $(MKLEANBOOK_PATH)/index.html > $(LEANBOOK_BUILD)/index.html
 	cp $(MKLEANBOOK_PATH)/juicy-ace-editor.html $(LEANBOOK_BUILD)
 	cp -r $(MKLEANBOOK_PATH)/css $(LEANBOOK_BUILD)
 	cp -r $(MKLEANBOOK_PATH)/fonts $(LEANBOOK_BUILD)
 	cp -r $(MKLEANBOOK_PATH)/images $(LEANBOOK_BUILD)
 	cp -r $(MKLEANBOOK_PATH)/js $(LEANBOOK_BUILD)
-	cp nav_data.js $(LEANBOOK_BUILD)/js
+	cp recvcode.js $(LEANBOOK_BUILD)/js
