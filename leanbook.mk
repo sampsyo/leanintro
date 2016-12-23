@@ -10,10 +10,10 @@ NAV_DATA := $(LEANBOOK_BUILD)/js/nav_data.js
 
 leanbook: copy-assets $(NAV_DATA) copy-html
 
-$(NAV_DATA):
+$(NAV_DATA): $(HTML)
 	mkdir -p $(dir $(NAV_DATA))
 	echo "var lean_nav_data = [" > $(NAV_DATA)
-	for i in $(HTML); do echo $$i; done | sed 's/\(.*\)/"\1",/' >> $(NAV_DATA)
+	for i in $(notdir $(HTML)); do echo $$i; done | sed 's/\(.*\)/"\1",/' >> $(NAV_DATA)
 	echo "];" >> $(NAV_DATA)
 
 copy-assets:
