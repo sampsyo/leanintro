@@ -1,5 +1,11 @@
-.PHONY: all pubhtml lean
+.PHONY: all pubhtml lean deploy-all
 all: pubhtml lean
+
+RSYNCARGS := --compress --recursive --checksum --itemize-changes \
+	--delete -e ssh
+DEST := dh:domains/adriansampson.net/doc/leanintro
+deploy-all: all
+	rsync $(RSYNCARGS) build/ $(DEST)
 
 # Madoko.
 TARGETS := index
