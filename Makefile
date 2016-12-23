@@ -3,7 +3,7 @@ all: lean
 
 # Madoko.
 TARGETS := ch1
-DEPS := style.mdk
+DEPS := style.mdk sendcode.js
 include madoko.mk
 
 # Build Lean web interface. Shamelessly ripped off from the mkleanbook
