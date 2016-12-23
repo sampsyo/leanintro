@@ -2,7 +2,7 @@
 all: pubhtml lean
 
 # Madoko.
-TARGETS := ch1
+TARGETS := index
 DEPS := style.mdk sendcode.js
 BUILD_DIR := html
 include madoko.mk
